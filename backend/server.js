@@ -6,6 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 const multer = require("multer");
+require('dotenv').config();
 
 // Configuration de la base de données
 const db = mysql.createConnection({

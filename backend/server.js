@@ -1,5 +1,4 @@
 const express = require("express");
-const functions = require("firebase-functions");
 const mysql = require("mysql2");
 const cors = require("cors");
 const path = require("path");

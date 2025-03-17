@@ -1,0 +1,550 @@
+{
+    "admin_membre": [
+        {
+            "id": "29",
+            "name": "wail ouamara",
+            "email": "ouamara.wail8@gmail.com",
+            "password": "Password"
+        },
+        {
+            "id": "31",
+            "name": "mohamedamine",
+            "email": "mohamedamine123076@gmail.com",
+            "password": "amine2005"
+        },
+        {
+            "id": "43",
+            "name": "soltana farid",
+            "email": "faridsoltana@gmail.com",
+            "password": "faridfarid"
+        }
+    ],
+    "commandes": [
+        {
+            "id": "1",
+            "nom": "Ali",
+            "prenom": "Bencheikh",
+            "email": "ali@example.com",
+            "numero": "+213550112233",
+            "produit": "PC Portable HP 15s",
+            "prix_total": "75000.00",
+            "date_commande": "2025-02-24",
+            "lieu": "Alger, Rue Didouche Mourad"
+        },
+        {
+            "id": "2",
+            "nom": "teste",
+            "prenom": "teste",
+            "email": "ouazmara.wail8@gmail.com",
+            "numero": "6666",
+            "produit": "Commande personnalisée",
+            "prix_total": "4500.00",
+            "date_commande": "2025-02-24",
+            "lieu": "teste"
+        },
+        {
+            "id": "3",
+            "nom": "teste2",
+            "prenom": "teste2",
+            "email": "teste@gmail.com",
+            "numero": "2222",
+            "produit": "Commande personnalisée",
+            "prix_total": "4500.00",
+            "date_commande": "2025-02-24",
+            "lieu": "teste 2"
+        },
+        {
+            "id": "4",
+            "nom": "teste",
+            "prenom": "tsteeee",
+            "email": "aaaaaaaaaaaa@gmail.com",
+            "numero": "2222",
+            "produit": "Commande personnalisée",
+            "prix_total": "4500.00",
+            "date_commande": "2025-02-25",
+            "lieu": "zzzz"
+        },
+        {
+            "id": "5",
+            "nom": "OUAMARA",
+            "prenom": "WAIL",
+            "email": "teste@gmail.com",
+            "numero": "999999999999999",
+            "produit": "Commande personnalisée",
+            "prix_total": "4500.00",
+            "date_commande": "2025-02-28",
+            "lieu": "10 Boulevard Joseph Vallier"
+        },
+        {
+            "id": "6",
+            "nom": "soltana",
+            "prenom": "farid",
+            "email": "farid@gmail.com",
+            "numero": "222222",
+            "produit": "Commande personnalisée",
+            "prix_total": "4500.00",
+            "date_commande": "2025-03-02",
+            "lieu": "1600 sebala"
+        }
+    ],
+    "info_admin": [
+        {
+            "id": "1",
+            "nom": "Jane Smith",
+            "email": "janesmith@example.com",
+            "role": "Modérateur",
+            "telephone": "0987654321",
+            "adresse": "Oran, Algérie",
+            "date_inscription": "2023-12-10",
+            "password": "fffff"
+        },
+        {
+            "id": "2",
+            "nom": "teste",
+            "email": "teste@gmail.com",
+            "role": "teste",
+            "telephone": "2222",
+            "adresse": "AAAA",
+            "date_inscription": "2025-02-27",
+            "password": "teste"
+        },
+        {
+            "id": "3",
+            "nom": "wail ouamara",
+            "email": "ouamara.wail8@gmail.com",
+            "role": "prprietéres",
+            "telephone": "0549255042",
+            "adresse": "10 Boulevard Joseph Vallier",
+            "date_inscription": "2025-02-25",
+            "password": "wail123"
+        },
+        {
+            "id": "7",
+            "nom": "omar",
+            "email": "omar@gmail.com",
+            "role": "teste",
+            "telephone": "0549255042",
+            "adresse": "10 Boulevard Joseph Vallier",
+            "date_inscription": "2025-02-06",
+            "password": "teste"
+        },
+        {
+            "id": "8",
+            "nom": "hassan",
+            "email": "hassan@gmail.com",
+            "role": "teste2",
+            "telephone": "0549255042",
+            "adresse": "10 Boulevard Joseph Vallier",
+            "date_inscription": "2025-02-27",
+            "password": "teste"
+        },
+        {
+            "id": "9",
+            "nom": "soltana farid",
+            "email": "faridsoltana@gmail.com",
+            "role": "membre fondateur",
+            "telephone": "0552165108",
+            "adresse": "cité 330 log bt26 n7 sebala draria alger",
+            "date_inscription": "2004-10-14",
+            "password": "faridfarid"
+        }
+    ],
+    "panier": [
+        {
+            "id": "20",
+            "produit_id": "66",
+            "quantite": "1",
+            "prix_unitaire": "3700.00",
+            "date_ajout": "2025-02-27 23:00:00",
+            "image_produit": "http://localhost:5050/images/photo_37.jpg",
+            "titre_produit": "Produit 37",
+            "en_stock": "1"
+        }
+    ],
+    "produits": [
+        {
+            "id": "30",
+            "titre": "Produit 1",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/1740405363179.jpg\\\",\\\"http://localhost:5050/images/1740405363179.jpg\\\"]",
+            "description": "Description du produit 1",
+            "prix": "100.00"
+        },
+        {
+            "id": "31",
+            "titre": "Produit 2",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/1740405380423.jpg\\\",\\\"http://localhost:5050/images/1740405380423.jpg\\\"]",
+            "description": "Description du produit 2",
+            "prix": "200.00"
+        },
+        {
+            "id": "32",
+            "titre": "Produit 3",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/1740404290506.jpg\\\",\\\"http://localhost:5050/images/1740404290506.jpg\\\"]",
+            "description": "Description du produit 3",
+            "prix": "300.00"
+        },
+        {
+            "id": "33",
+            "titre": "Produit 4",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/1740404306888.jpg\\\",\\\"http://localhost:5050/images/1740404306888.jpg\\\"]",
+            "description": "Description du produit 4",
+            "prix": "400.00"
+        },
+        {
+            "id": "34",
+            "titre": "Produit 5",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/1740404336201.jpg\\\",\\\"http://localhost:5050/images/1740404336201.jpg\\\"]",
+            "description": "Description du produit 5",
+            "prix": "500.00"
+        },
+        {
+            "id": "35",
+            "titre": "Produit 6",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/1740404356712.jpg\\\",\\\"http://localhost:5050/images/1740404356712.jpg\\\"]",
+            "description": "Description du produit 6",
+            "prix": "600.00"
+        },
+        {
+            "id": "36",
+            "titre": "Produit 7",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_7.jpg\\\", \\\"http://localhost:5050/images/photo_7.jpg\\\"]",
+            "description": "Description du produit 7",
+            "prix": "700.00"
+        },
+        {
+            "id": "37",
+            "titre": "Produit 8",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_8.jpg\\\", \\\"http://localhost:5050/images/photo_8.jpg\\\"]",
+            "description": "Description du produit 8",
+            "prix": "800.00"
+        },
+        {
+            "id": "38",
+            "titre": "Produit 9",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_9.jpg\\\", \\\"http://localhost:5050/images/photo_9.jpg\\\"]",
+            "description": "Description du produit 9",
+            "prix": "900.00"
+        },
+        {
+            "id": "39",
+            "titre": "Produit 10",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_10.jpg\\\", \\\"http://localhost:5050/images/photo_10.jpg\\\"]",
+            "description": "Description du produit 10",
+            "prix": "1000.00"
+        },
+        {
+            "id": "40",
+            "titre": "Produit 11",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_11.jpg\\\", \\\"http://localhost:5050/images/photo_11.jpg\\\"]",
+            "description": "Description du produit 11",
+            "prix": "1100.00"
+        },
+        {
+            "id": "41",
+            "titre": "Produit 12",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_12.jpg\\\", \\\"http://localhost:5050/images/photo_12.jpg\\\"]",
+            "description": "Description du produit 12",
+            "prix": "1200.00"
+        },
+        {
+            "id": "42",
+            "titre": "Produit 13",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_13.jpg\\\", \\\"http://localhost:5050/images/photo_13.jpg\\\"]",
+            "description": "Description du produit 13",
+            "prix": "1300.00"
+        },
+        {
+            "id": "43",
+            "titre": "Produit 14",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_14.jpg\\\", \\\"http://localhost:5050/images/photo_14.jpg\\\"]",
+            "description": "Description du produit 14",
+            "prix": "1400.00"
+        },
+        {
+            "id": "44",
+            "titre": "Produit 15",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_15.jpg\\\", \\\"http://localhost:5050/images/photo_15.jpg\\\"]",
+            "description": "Description du produit 15",
+            "prix": "1500.00"
+        },
+        {
+            "id": "45",
+            "titre": "Produit 16",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_16.jpg\\\", \\\"http://localhost:5050/images/photo_16.jpg\\\"]",
+            "description": "Description du produit 16",
+            "prix": "1600.00"
+        },
+        {
+            "id": "46",
+            "titre": "Produit 17",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_17.jpg\\\", \\\"http://localhost:5050/images/photo_17.jpg\\\"]",
+            "description": "Description du produit 17",
+            "prix": "1700.00"
+        },
+        {
+            "id": "47",
+            "titre": "Produit 18",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_18.jpg\\\", \\\"http://localhost:5050/images/photo_18.jpg\\\"]",
+            "description": "Description du produit 18",
+            "prix": "1800.00"
+        },
+        {
+            "id": "48",
+            "titre": "Produit 19",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_19.jpg\\\", \\\"http://localhost:5050/images/photo_19.jpg\\\"]",
+            "description": "Description du produit 19",
+            "prix": "1900.00"
+        },
+        {
+            "id": "49",
+            "titre": "Produit 20",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_20.jpg\\\", \\\"http://localhost:5050/images/photo_20.jpg\\\"]",
+            "description": "Description du produit 20",
+            "prix": "2000.00"
+        },
+        {
+            "id": "50",
+            "titre": "Produit 21",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_21.jpg\\\", \\\"http://localhost:5050/images/photo_21.jpg\\\"]",
+            "description": "Description du produit 21",
+            "prix": "2100.00"
+        },
+        {
+            "id": "51",
+            "titre": "Produit 22",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_22.jpg\\\", \\\"http://localhost:5050/images/photo_22.jpg\\\"]",
+            "description": "Description du produit 22",
+            "prix": "2200.00"
+        },
+        {
+            "id": "52",
+            "titre": "Produit 23",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_23.jpg\\\", \\\"http://localhost:5050/images/photo_23.jpg\\\"]",
+            "description": "Description du produit 23",
+            "prix": "2300.00"
+        },
+        {
+            "id": "53",
+            "titre": "Produit 24",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_24.jpg\\\", \\\"http://localhost:5050/images/photo_24.jpg\\\"]",
+            "description": "Description du produit 24",
+            "prix": "2400.00"
+        },
+        {
+            "id": "54",
+            "titre": "Produit 25",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_25.jpg\\\", \\\"http://localhost:5050/images/photo_25.jpg\\\"]",
+            "description": "Description du produit 25",
+            "prix": "2500.00"
+        },
+        {
+            "id": "55",
+            "titre": "Produit 26",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_26.jpg\\\", \\\"http://localhost:5050/images/photo_26.jpg\\\"]",
+            "description": "Description du produit 26",
+            "prix": "2600.00"
+        },
+        {
+            "id": "56",
+            "titre": "Produit 27",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_27.jpg\\\", \\\"http://localhost:5050/images/photo_27.jpg\\\"]",
+            "description": "Description du produit 27",
+            "prix": "2700.00"
+        },
+        {
+            "id": "57",
+            "titre": "Produit 28",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_28.jpg\\\", \\\"http://localhost:5050/images/photo_28.jpg\\\"]",
+            "description": "Description du produit 28",
+            "prix": "2800.00"
+        },
+        {
+            "id": "58",
+            "titre": "Produit 29",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_29.jpg\\\", \\\"http://localhost:5050/images/photo_29.jpg\\\"]",
+            "description": "Description du produit 29",
+            "prix": "2900.00"
+        },
+        {
+            "id": "59",
+            "titre": "Produit 30",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/1740468757458.jpg\\\"]",
+            "description": "Description du produit 30",
+            "prix": "3000.00"
+        },
+        {
+            "id": "60",
+            "titre": "Produit 31",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_31.jpg\\\", \\\"http://localhost:5050/images/photo_31.jpg\\\"]",
+            "description": "Description du produit 31",
+            "prix": "3100.00"
+        },
+        {
+            "id": "61",
+            "titre": "Produit 32",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_32.jpg\\\", \\\"http://localhost:5050/images/photo_32.jpg\\\"]",
+            "description": "Description du produit 32",
+            "prix": "3200.00"
+        },
+        {
+            "id": "62",
+            "titre": "Produit 33",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_33.jpg\\\", \\\"http://localhost:5050/images/photo_33.jpg\\\"]",
+            "description": "Description du produit 33",
+            "prix": "3300.00"
+        },
+        {
+            "id": "63",
+            "titre": "Produit 34",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_34.jpg\\\", \\\"http://localhost:5050/images/photo_34.jpg\\\"]",
+            "description": "Description du produit 34",
+            "prix": "3400.00"
+        },
+        {
+            "id": "64",
+            "titre": "Produit 35",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_35.jpg\\\", \\\"http://localhost:5050/images/photo_35.jpg\\\"]",
+            "description": "Description du produit 35",
+            "prix": "3500.00"
+        },
+        {
+            "id": "65",
+            "titre": "Produit 36",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_36.jpg\\\", \\\"http://localhost:5050/images/photo_36.jpg\\\"]",
+            "description": "Description du produit 36",
+            "prix": "3600.00"
+        },
+        {
+            "id": "66",
+            "titre": "Produit 37",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_37.jpg\\\", \\\"http://localhost:5050/images/photo_37.jpg\\\"]",
+            "description": "Description du produit 37",
+            "prix": "3700.00"
+        },
+        {
+            "id": "67",
+            "titre": "Produit 38",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_38.jpg\\\", \\\"http://localhost:5050/images/photo_38.jpg\\\"]",
+            "description": "Description du produit 38",
+            "prix": "3800.00"
+        },
+        {
+            "id": "68",
+            "titre": "Produit 39",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_39.jpg\\\", \\\"http://localhost:5050/images/photo_39.jpg\\\"]",
+            "description": "Description du produit 39",
+            "prix": "3900.00"
+        },
+        {
+            "id": "69",
+            "titre": "Produit 40",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_40.jpg\\\", \\\"http://localhost:5050/images/photo_40.jpg\\\"]",
+            "description": "Description du produit 40",
+            "prix": "4000.00"
+        },
+        {
+            "id": "70",
+            "titre": "Produit 41",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_41.jpg\\\", \\\"http://localhost:5050/images/photo_41.jpg\\\"]",
+            "description": "Description du produit 41",
+            "prix": "4100.00"
+        },
+        {
+            "id": "71",
+            "titre": "Produit 42",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_42.jpg\\\", \\\"http://localhost:5050/images/photo_42.jpg\\\"]",
+            "description": "Description du produit 42",
+            "prix": "4200.00"
+        },
+        {
+            "id": "72",
+            "titre": "Produit 43",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_43.jpg\\\", \\\"http://localhost:5050/images/photo_43.jpg\\\"]",
+            "description": "Description du produit 43",
+            "prix": "4300.00"
+        },
+        {
+            "id": "74",
+            "titre": "Produit 45",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_45.jpg\\\", \\\"http://localhost:5050/images/photo_45.jpg\\\"]",
+            "description": "Description du produit 45",
+            "prix": "4500.00"
+        },
+        {
+            "id": "75",
+            "titre": "Produit 46",
+            "categorie": "Cosmétiques",
+            "images": "[\\\"http://localhost:5050/images/photo_46.jpg\\\", \\\"http://localhost:5050/images/photo_46.jpg\\\"]",
+            "description": "Description du produit 46",
+            "prix": "4600.00"
+        },
+        {
+            "id": "76",
+            "titre": "Produit 47",
+            "categorie": "Bijoux",
+            "images": "[\\\"http://localhost:5050/images/photo_47.jpg\\\", \\\"http://localhost:5050/images/photo_47.jpg\\\"]",
+            "description": "Description du produit 47",
+            "prix": "4700.00"
+        },
+        {
+            "id": "77",
+            "titre": "Produit 48",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/photo_48.jpg\\\", \\\"http://localhost:5050/images/photo_48.jpg\\\"]",
+            "description": "Description du produit 48",
+            "prix": "4800.00"
+        },
+        {
+            "id": "104",
+            "titre": "Produit 44",
+            "categorie": "Accessoires",
+            "images": "[\\\"http://localhost:5050/images/1740340141826.jpg\\\"]",
+            "description": "Produit 44",
+            "prix": "90.00"
+        }
+    ]
+}

@@ -412,158 +412,158 @@ app.delete("/api/info_admin/:id", (req, res) => {
 // gestion du panier
 
 // Route pour récupérer tous les paniers
-app.get("/api/panier", checkDBConnection, (req, res) => {
-  db.query("SELECT * FROM panier", (err, result) => {
-    if (err) {
-      console.error("Erreur lors de la récupération des paniers:", err);
-      return res
-        .status(500)
-        .json({ message: "Erreur serveur", erreur: err.message });
-    }
-    res.status(200).json(result);
-  });
-});
+// app.get("/api/panier", checkDBConnection, (req, res) => {
+//   db.query("SELECT * FROM panier", (err, result) => {
+//     if (err) {
+//       console.error("Erreur lors de la récupération des paniers:", err);
+//       return res
+//         .status(500)
+//         .json({ message: "Erreur serveur", erreur: err.message });
+//     }
+//     res.status(200).json(result);
+//   });
+// });
 
 // Route pour récupérer un panier par ID
-app.get("/api/panier/:id", checkDBConnection, (req, res) => {
-  const { id } = req.params;
+// app.get("/api/panier/:id", checkDBConnection, (req, res) => {
+//   const { id } = req.params;
 
-  db.query("SELECT * FROM panier WHERE id = ?", [id], (err, result) => {
-    if (err) {
-      console.error("Erreur lors de la récupération du panier:", err);
-      return res
-        .status(500)
-        .json({ message: "Erreur serveur", erreur: err.message });
-    }
-    if (result.length === 0) {
-      return res.status(404).json({ message: "Panier non trouvé" });
-    }
-    res.status(200).json(result[0]);
-  });
-});
+//   db.query("SELECT * FROM panier WHERE id = ?", [id], (err, result) => {
+//     if (err) {
+//       console.error("Erreur lors de la récupération du panier:", err);
+//       return res
+//         .status(500)
+//         .json({ message: "Erreur serveur", erreur: err.message });
+//     }
+//     if (result.length === 0) {
+//       return res.status(404).json({ message: "Panier non trouvé" });
+//     }
+//     res.status(200).json(result[0]);
+//   });
+// });
 
 // Route pour ajouter un panier
-app.post("/api/panier", (req, res) => {
-  const {
-    produit_id,
-    quantite,
-    prix_unitaire,
-    date_ajout,
-    image_produit,
-    titre_produit,
-    en_stock,
-  } = req.body;
+// app.post("/api/panier", (req, res) => {
+//   const {
+//     produit_id,
+//     quantite,
+//     prix_unitaire,
+//     date_ajout,
+//     image_produit,
+//     titre_produit,
+//     en_stock,
+//   } = req.body;
 
-  if (
-    !produit_id ||
-    quantite === undefined ||
-    !prix_unitaire ||
-    !date_ajout ||
-    !image_produit ||
-    !titre_produit ||
-    en_stock === undefined
-  ) {
-    return res
-      .status(400)
-      .json({ message: "Tous les champs sont requis", data: req.body });
-  }
+//   if (
+//     !produit_id ||
+//     quantite === undefined ||
+//     !prix_unitaire ||
+//     !date_ajout ||
+//     !image_produit ||
+//     !titre_produit ||
+//     en_stock === undefined
+//   ) {
+//     return res
+//       .status(400)
+//       .json({ message: "Tous les champs sont requis", data: req.body });
+//   }
 
-  const sql =
-    "INSERT INTO panier (produit_id, quantite, prix_unitaire, date_ajout, image_produit, titre_produit, en_stock) VALUES (?, ?, ?, ?, ?, ?, ?)";
+//   const sql =
+//     "INSERT INTO panier (produit_id, quantite, prix_unitaire, date_ajout, image_produit, titre_produit, en_stock) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-  db.query(
-    sql,
-    [
-      produit_id,
-      quantite,
-      prix_unitaire,
-      date_ajout,
-      image_produit,
-      titre_produit,
-      en_stock,
-    ],
-    (err, result) => {
-      if (err) {
-        console.error("Erreur lors de l'ajout au panier :", err);
-        return res
-          .status(500)
-          .json({ message: "Erreur serveur", erreur: err.message });
-      }
-      res
-        .status(201)
-        .json({ message: "Produit ajouté au panier avec succès !" });
-    }
-  );
-});
+//   db.query(
+//     sql,
+//     [
+//       produit_id,
+//       quantite,
+//       prix_unitaire,
+//       date_ajout,
+//       image_produit,
+//       titre_produit,
+//       en_stock,
+//     ],
+//     (err, result) => {
+//       if (err) {
+//         console.error("Erreur lors de l'ajout au panier :", err);
+//         return res
+//           .status(500)
+//           .json({ message: "Erreur serveur", erreur: err.message });
+//       }
+//       res
+//         .status(201)
+//         .json({ message: "Produit ajouté au panier avec succès !" });
+//     }
+//   );
+// });
 
 // Route pour modifier un panier
-app.patch("/api/panier/:id", checkDBConnection, (req, res) => {
-  const { id } = req.params;
-  const { quantite } = req.body;
+// app.patch("/api/panier/:id", checkDBConnection, (req, res) => {
+//   const { id } = req.params;
+//   const { quantite } = req.body;
 
-  console.log("Requête reçue :", req.body); // 🔍 Vérifie les données envoyées
+//   console.log("Requête reçue :", req.body); // 🔍 Vérifie les données envoyées
 
-  if (!quantite) {
-    return res.status(400).json({ message: "La quantité est requise" });
-  }
+//   if (!quantite) {
+//     return res.status(400).json({ message: "La quantité est requise" });
+//   }
 
-  // Récupérer le prix unitaire du produit avant de mettre à jour la table
-  db.query(
-    "SELECT prix_unitaire FROM panier WHERE id = ?",
-    [id],
-    (err, result) => {
-      if (err) {
-        console.error("Erreur lors de la récupération du prix:", err);
-        return res
-          .status(500)
-          .json({ message: "Erreur serveur", erreur: err.message });
-      }
+//   // Récupérer le prix unitaire du produit avant de mettre à jour la table
+//   db.query(
+//     "SELECT prix_unitaire FROM panier WHERE id = ?",
+//     [id],
+//     (err, result) => {
+//       if (err) {
+//         console.error("Erreur lors de la récupération du prix:", err);
+//         return res
+//           .status(500)
+//           .json({ message: "Erreur serveur", erreur: err.message });
+//       }
 
-      if (result.length === 0) {
-        return res.status(404).json({ message: "Produit non trouvé" });
-      }
+//       if (result.length === 0) {
+//         return res.status(404).json({ message: "Produit non trouvé" });
+//       }
 
-      const prix_unitaire = result[0].prix_unitaire;
-      const prix_total = quantite * prix_unitaire;
+//       const prix_unitaire = result[0].prix_unitaire;
+//       const prix_total = quantite * prix_unitaire;
 
-      console.log("Mise à jour :", { id, quantite, prix_total }); // 🔍 Vérifie les nouvelles valeurs
+//       console.log("Mise à jour :", { id, quantite, prix_total }); // 🔍 Vérifie les nouvelles valeurs
 
-      // Mettre à jour la quantité et recalculer le prix total
-      db.query(
-        "UPDATE panier SET quantite = ?, prix_total = ? WHERE id = ?",
-        [quantite, prix_total, id],
-        (err, result) => {
-          if (err) {
-            console.error("Erreur lors de la mise à jour du panier:", err);
-            return res
-              .status(500)
-              .json({ message: "Erreur serveur", erreur: err.message });
-          }
-          res.status(200).json({
-            message: "Panier mis à jour avec succès !",
-            quantite,
-            prix_total,
-          });
-        }
-      );
-    }
-  );
-});
+//       // Mettre à jour la quantité et recalculer le prix total
+//       db.query(
+//         "UPDATE panier SET quantite = ?, prix_total = ? WHERE id = ?",
+//         [quantite, prix_total, id],
+//         (err, result) => {
+//           if (err) {
+//             console.error("Erreur lors de la mise à jour du panier:", err);
+//             return res
+//               .status(500)
+//               .json({ message: "Erreur serveur", erreur: err.message });
+//           }
+//           res.status(200).json({
+//             message: "Panier mis à jour avec succès !",
+//             quantite,
+//             prix_total,
+//           });
+//         }
+//       );
+//     }
+//   );
+// });
 
 // Route pour supprimer un panier
-app.delete("/api/panier/:id", checkDBConnection, (req, res) => {
-  const { id } = req.params;
+// app.delete("/api/panier/:id", checkDBConnection, (req, res) => {
+//   const { id } = req.params;
 
-  db.query("DELETE FROM panier WHERE id = ?", [id], (err, result) => {
-    if (err) {
-      console.error("Erreur lors de la suppression du panier:", err);
-      return res
-        .status(500)
-        .json({ message: "Erreur serveur", erreur: err.message });
-    }
-    res.status(200).json({ message: "Panier supprimé avec succès !" });
-  });
-});
+//   db.query("DELETE FROM panier WHERE id = ?", [id], (err, result) => {
+//     if (err) {
+//       console.error("Erreur lors de la suppression du panier:", err);
+//       return res
+//         .status(500)
+//         .json({ message: "Erreur serveur", erreur: err.message });
+//     }
+//     res.status(200).json({ message: "Panier supprimé avec succès !" });
+//   });
+// });
 
 // gestion des commandes
 app.post("/api/commandes", (req, res) => {
@@ -604,9 +604,21 @@ app.get("/api/commandes", (req, res) => {
         error: err,
       });
     }
-    res.status(200).json(result);
+
+    // ✅ Parser le champ `produit` en JSON
+    const commandes = result.map(cmd => ({
+      ...cmd,
+      produit: cmd.produit ? JSON.parse(cmd.produit) : [] // 🛠️ S'assurer que c'est un tableau
+    }));
+
+    console.log("Commandes après parsing :", commandes); // 📌 Vérification
+
+    res.status(200).json(commandes);
   });
 });
+
+
+
 
 // Lancer le serveur
 const PORT = 5050;

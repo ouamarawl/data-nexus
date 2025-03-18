@@ -14,7 +14,6 @@ const db = mysql.createConnection({
   user: "root",
   password: "",
   database: "nexus-data",
-  PORT: 3306,
 });
 
 
@@ -622,7 +621,7 @@ app.get("/api/commandes", (req, res) => {
 
 
 // Lancer le serveur
-const PORT = 3306;
+const PORT = 5050;
 app.listen(PORT, () => {
   console.log(`🚀 Serveur démarré sur http://localhost:${PORT}`);
 });

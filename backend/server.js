@@ -1,5 +1,4 @@
 const express = require("express");
-const functions = require("firebase-functions");
 const mysql = require("mysql2");
 const cors = require("cors");
 const path = require("path");
@@ -11,7 +10,7 @@ const multer = require("multer");
 
 // Configuration de la base de données
 const db = mysql.createConnection({
-  host: "localhost",
+  host: "127.0.0.1",
   user: "root",
   password: "",
   database: "nexus-data",

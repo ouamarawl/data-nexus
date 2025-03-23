@@ -230,7 +230,7 @@
             "id": "38",
             "titre": "Produit 9",
             "categorie": "Accessoires",
-            "images": "[\\\"http://localhost:5050/images/photo_9.jpg\\\", \\\"http://localhost:5050/images/photo_9.jpg\\\"]",
+            "images": ["http://localhost:5050/images/photo_9.jpg","http://localhost:5050/images/photo_9.jpg"],
             "description": "Description du produit 9",
             "prix": "900.00"
         },

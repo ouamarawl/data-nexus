@@ -1,0 +1,142 @@
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 0 40px;
+    animation: fadeIn 3s ease-out;
+  }
+
+  .about-section {
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid black;
+    background-color: var(--secondary-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    width: 48%;
+    transition: 0.4s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .about-section:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    transition: all 0.3s ease-out;
+    background-color:var(--primary-color);
+  }
+  
+  .about-section h2 {
+    font-size: 32px;
+    color: var(--couleurs-foncer);
+    margin-bottom: 20px;
+    position: relative;
+    transition: transform 0.3s ease-out, color 0.3s ease;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .about-section p,
+  .about-section ul {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.8;
+  }
+  
+  .about-section:hover h2 {
+    color: #000;
+    transform: translateX(15px);
+    /* text-shadow: 0 0 15px #ffd43b; */
+  }
+  .about-section h2 {
+    animation: glow 3s infinite alternate;
+  }
+  
+  .about-section ul li {
+    transition: transform 0.3s ease, color 0.3s ease;
+    list-style: none;
+    color: #666;
+  }
+  
+  .about-section ul li:hover {
+    transform: translateX(12px);
+    color: #000;
+    list-style: none;
+  }
+  
+  .about-section img {
+    width: 100%;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover;
+  }
+  
+  .about-section img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  }
+
+  @media (min-width: 1024px) and (max-width: 1179px) {
+    .about-container {
+      padding: 20px;
+      margin: 20% 3% 3% 3%;
+    }
+  
+    .about-content {
+      padding: 0 20px;
+      gap: 30px;
+    }
+  
+    .about-section {
+      width: 46%;
+      padding: 30px;
+    }
+  }
+  
+  
+@media (max-width: 1024px) {
+  .about-container {
+    padding: 20px;
+    margin: 20% 3% 3% 3%;
+  }
+
+  .about-content {
+    padding: 0 20px;
+    gap: 30px;
+  }
+
+  .about-section {
+    width: 48%;
+    padding: 30px;
+  }
+}
+
+
+@media (max-width: 1024px) {
+
+
+
+  .about-content {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 20px;
+  }
+
+  .about-section {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    margin: 20% 4% 4% 4%;
+  }
+
+
+  .about-section {
+    width: 100%;
+    padding: 15px;
+  }
+}

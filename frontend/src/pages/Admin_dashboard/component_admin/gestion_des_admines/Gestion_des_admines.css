@@ -1,0 +1,118 @@
+/* Conteneur principal */
+.table-container {
+  max-width: 95%;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+  overflow-x: auto; /* Permet le scroll horizontal si besoin */
+  box-shadow: 0px 5px 50px -20px #222;
+}
+
+/* Titre */
+.table-container h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Table */
+.table-style {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  min-width: 400px; /* Evite que le tableau devienne trop étroit */
+}
+
+.table-style thead {
+  background: #007bff;
+  color: white;
+}
+
+.table-style th, 
+.table-style td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.table-style th {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Effet sur les lignes */
+.table-style tbody tr {
+  transition: background 0.3s ease-in-out;
+}
+
+.table-style tbody tr:hover {
+  background: #f5f5f5;
+}
+
+/* Boutons */
+.button-des-admines button {
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button-des-admines button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton Ajouter */
+.validate-btn {
+  background: #28a745;
+  color: white;
+}
+
+.validate-btn:hover {
+  background: #218838;
+}
+
+/* Bouton Supprimer */
+.delete-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #c82333;
+}
+
+/* Message d'erreur */
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+  .table-container {
+    padding: 10px;
+  }
+
+  .table-style {
+    font-size: 12px;
+    min-width: 100%; /* S'adapte à l'écran */
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  .button-des-admines button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}

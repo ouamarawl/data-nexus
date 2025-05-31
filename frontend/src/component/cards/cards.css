@@ -1,0 +1,422 @@
+/* ========================== */
+/*     STYLES DES CARTES     */
+/* ========================== */
+
+/* Carte Produit */
+.card-produit {
+  width: 250px;
+  background-color: white;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(255, 212, 59, 0.2);
+  transition: transform 0.3s ease-in-out;
+  margin: 1%;
+}
+
+.card-produit:hover {
+  transform: scale(1.05);
+}
+
+.card-produit img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.card-produit h3,
+.card-produit p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #222;
+}
+
+.card-produit p {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Carte Catégorie */
+.card-category {
+  width: 250px;
+  background-color: white;
+  color: #FFD43B;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(255, 212, 59, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-category:hover {
+  transform: scale(1.05);
+}
+
+.card-category img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.card-category h3,
+.card-category p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #222;
+}
+
+.card-category p {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* ============================== */
+/*  CONTENEUR PRINCIPAL DU PANIER */
+/* ============================== */
+
+.container-card-panier {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+}
+
+.classe-superieur {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.partie-L {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.image-produit {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+}
+
+.enfant-l {
+  display: flex;
+  flex-direction: column;
+}
+
+.titre {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+.disponibilite {
+  color: green;
+}
+
+.logo {
+  font-size: 14px;
+  color: gray;
+}
+
+.partie-R .prix {
+  font-size: 18px;
+  font-weight: bold;
+  color: #d32f2f;
+}
+
+.classe-inferieur {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.supprimer {
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.supprimer:hover {
+  background-color: #d32f2f;
+}
+
+.button-dajout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-dajout button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button-dajout button:hover {
+  background-color: #0d47a1;
+}
+
+.quantite {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* ============================== */
+/*  CONTENEUR RÉSUMÉ DU PANIER    */
+/* ============================== */
+
+.container-card-resume-panier {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+}
+
+.prix-totale {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.achter button {
+  background-color: rgb(125, 228, 237);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 50%;
+  height: 40px;
+  margin-top: 2%;
+}
+
+.achter button:hover {
+  background-color: darkgreen;
+  transform: scale(1.05);
+}
+
+.container-card-resume-panier p,
+.container-card-resume-panier h3,
+.container-card-resume-panier h2 {
+  font-size: 22px;
+  margin-bottom: 2%;
+}
+
+/* ============================== */
+/*  RESPONSIVE DESIGN            */
+/* ============================== */
+
+@media (min-width:  790px) and (max-width: 890px) {
+  .card-produit {
+    max-width: 14rem;
+  }
+  .card-category {
+    max-width: 200px;
+  }
+  .container-card-panier {
+    width: 95%;
+    padding: 10px;
+  }
+  .titre {
+    font-size: 14px;
+  }
+  .container-card-resume-panier {
+    width: 80%;
+  }
+}
+
+@media (max-width: 790px) {
+  .card-produit {
+    max-width: 15rem;
+  }
+  .card-category {
+    max-width: 200px;
+  }
+  .container-card-panier {
+    width: 95%;
+    padding: 10px;
+  }
+  .titre {
+    font-size: 14px;
+  }
+  .container-card-resume-panier {
+    width: 80%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 790px) {
+  .card-produit {
+    max-width: 13rem;
+  }
+  .container-card-resume-panier {
+    margin-top: 5%;
+  }
+  .container-cards-panier {
+      width: 95%;
+      padding: 8px;
+      gap: 8px;
+  }
+  .card-category {
+    display: flex;
+    max-width: 180px;
+    justify-content: space-between;
+  }
+  .card-category img {
+    width: 26%;
+  }
+  .image-produit {
+    width: 50px;
+    height: 50px;
+  }
+  .titre {
+    font-size: 12px;
+  }
+  .prix {
+    font-size: 14px;
+  }
+  .button-dajout button,
+  .supprimer,
+  .achter button {
+    padding: 5px;
+    font-size: 12px;
+  }
+} 
+
+/* responsive telphones */
+
+
+@media (max-width: 600px) {
+  .card-produit {
+    max-width: 10rem;
+  }
+  .container-card-resume-panier {
+    margin-top: 5%;
+  }
+  .container-cards-panier {
+      width: 95%;
+      padding: 8px;
+      gap: 8px;
+  }
+  .card-category {
+    display: flex;
+    max-width: 180px;
+    justify-content: space-between;
+  }
+  .card-category img {
+    width: 26%;
+  }
+  .image-produit {
+    width: 50px;
+    height: 50px;
+  }
+  .titre {
+    font-size: 12px;
+  }
+  .prix {
+    font-size: 14px;
+  }
+  .button-dajout button,
+  .supprimer,
+  .achter button {
+    padding: 5px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 456px) {
+  .card-produit {
+    max-width: 10rem;
+  }
+  .container-card-resume-panier {
+    margin-top: 5%;
+  }
+  .container-cards-panier {
+      width: 95%;
+      padding: 8px;
+      gap: 8px;
+  }
+  .card-category {
+    display: flex;
+    max-width: 180px;
+    justify-content: space-between;
+  }
+  .card-category img {
+    width: 26%;
+  }
+  .image-produit {
+    width: 50px;
+    height: 50px;
+  }
+  .titre {
+    font-size: 12px;
+  }
+  .prix {
+    font-size: 14px;
+  }
+  .button-dajout button,
+  .supprimer,
+  .achter button {
+    padding: 5px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 420px) {
+  .card-produit {
+    max-width: 9rem;
+  }
+  .container-card-resume-panier {
+    margin-top: 5%;
+  }
+  .container-cards-panier {
+      width: 95%;
+      padding: 8px;
+      gap: 8px;
+  }
+  .card-category {
+    display: flex;
+    max-width: 180px;
+    justify-content: space-between;
+  }
+  .card-category img {
+    width: 26%;
+  }
+  .image-produit {
+    width: 50px;
+    height: 50px;
+  }
+  .titre {
+    font-size: 12px;
+  }
+  .prix {
+    font-size: 14px;
+  }
+  .button-dajout button,
+  .supprimer,
+  .achter button {
+    padding: 5px;
+    font-size: 12px;
+  }
+}

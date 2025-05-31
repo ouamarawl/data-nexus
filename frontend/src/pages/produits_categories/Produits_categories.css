@@ -1,0 +1,46 @@
+.Produits_categories h1 {
+    margin: 10px;
+    text-align: center;
+    font-size: 28px;
+}
+
+.Produits_categories {
+    padding-top: 80px;
+    margin: 2%;
+}
+
+/* Tablettes (1024px et moins) */
+@media (max-width: 1024px) {
+    .Produits_categories {
+        padding-top: 60px;
+        margin: 4%;
+    }
+
+    .Produits_categories h1 {
+        font-size: 24px;
+    }
+}
+
+/* Mobiles (768px et moins) */
+@media (max-width: 768px) {
+    .Produits_categories {
+        padding-top: 50px;
+        margin: 5%;
+    }
+
+    .Produits_categories h1 {
+        font-size: 22px;
+    }
+}
+
+/* Petits écrans (480px et moins) */
+@media (max-width: 480px) {
+    .Produits_categories {
+        padding-top: 40px;
+        margin: 6%;
+    }
+
+    .Produits_categories h1 {
+        font-size: 20px;
+    }
+}

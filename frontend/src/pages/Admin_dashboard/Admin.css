@@ -1,0 +1,89 @@
+.admin-dashboard {
+  display: flex;
+  flex-wrap: wrap; /* Permet aux sections de s'adapter */
+  justify-content: center; /* Centre les éléments */
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  
+}
+#admin-dashboard-titre {
+  margin-top: 8%;
+}
+
+/* Section principale */
+.section-dashboard {
+  margin-top: 1%;
+  background-color: white;
+  border-radius: 1%;
+  width: 100%;
+  
+}
+
+/* Effet au survol */
+.admin-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.container_1 {
+  display: flex;
+  justify-content: space-between; /* Espace entre les éléments */
+  align-items: center; /* Alignement vertical */
+  gap: 20px; /* Espacement entre les composants */
+  padding: 20px;
+  flex-wrap: wrap; /* Permet le retour à la ligne sur petits écrans */
+  width: 100%;
+}
+.container_2 {
+  display: flex;
+  justify-content: space-between; /* Espace entre les éléments */
+  align-items: center; /* Alignement vertical */
+  gap: 20px; /* Espacement entre les composants */
+  padding: 20px;
+  flex-wrap: wrap; /* Permet le retour à la ligne sur petits écrans */
+  width: 100%;
+}
+
+/* Tablettes (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .section-dashboard {
+    min-width: 48%;
+  }
+  #admin-dashboard-titre {
+    margin-top: 16%;
+  }
+}
+
+/* Mobiles (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .admin-dashboard {
+    flex-direction: column; /* Passe en colonne sur petits écrans */
+    align-items: center;
+  }
+
+  .section-dashboard {
+    width: 90%;
+    min-width: auto;
+  }
+  #admin-dashboard-titre {
+    margin-top: 16%;
+  }
+}
+
+/* Très petits écrans (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .section-dashboard {
+    width: 100%; /* Prend toute la largeur */
+    padding: 15px;
+  }
+
+  .admin-dashboard {
+    padding: 10px;
+    gap: 15px;
+  }
+  #admin-dashboard-titre {
+    margin-top: 16%;
+  }
+}

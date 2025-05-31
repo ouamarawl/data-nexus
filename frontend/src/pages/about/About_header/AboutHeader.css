@@ -1,0 +1,68 @@
+.about-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeIn 2s ease-out;
+    position: relative;
+  }
+  
+  .about-header:hover {
+    transform: translateY(-10px);
+  }
+  
+  .about-header h1 {
+    font-size: 48px;
+    color: var(--couleurs-foncer);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .about-header p {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.8;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .about-header:hover h1 {
+    color: var(--couleurs-foncer);
+    transform: scale(1.05);
+  }
+  
+@media (max-width: 1024px) {
+  .about-container {
+    padding: 20px;
+    margin: 20% 3% 3% 3%;
+  }
+
+  .about-header h1 {
+    font-size: 36px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .about-header h1 {
+    font-size: 28px;
+  }
+
+  .about-header p {
+    font-size: 16px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    margin: 20% 4% 4% 4%;
+  }
+  .about-header h1 {
+    font-size: 24px;
+  }
+
+  .about-header p {
+    font-size: 14px;
+  }
+
+}

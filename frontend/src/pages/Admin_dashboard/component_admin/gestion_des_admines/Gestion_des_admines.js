@@ -36,59 +36,33 @@ function Gestion_des_admines() {
       .finally(() => setLoading(false));
   }, []);
 
-  const ajouterUtilisateur = async (id) => {
-    const adminSelectionne = admins.find((admin) => admin.id === id);
-    if (!adminSelectionne) return alert("Admin introuvable !");
-
+  // Valider un admin (copie info_admin -> admin_membre)
+  const validerAdmin = async (id) => {
+    setError(null);
     try {
-      const response = await fetch("http://localhost:5050/api/admin_membre", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: adminSelectionne.nom,
-          email: adminSelectionne.email,
-          password: adminSelectionne.password || "Non spécifié",
-        }),
+      const response = await fetch(`http://localhost:5050/api/info_admin/valider/${id}`, {
+        method: "POST"
       });
-
-      if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
-
       const data = await response.json();
-      setadmin_membre([...admin_membre, { ...adminSelectionne, id: data.id }]);
-      alert("Utilisateur ajouté avec succès !");
+      if (!response.ok) throw new Error(data.message || "Erreur lors de la validation");
+      alert(data.message || "Admin validé avec succès");
+      await fetchAdmins();
+      await fetchAdminMembre();
     } catch (error) {
-      alert("Erreur d'ajout :" + error.message);
+      alert("Erreur de validation :" + error.message);
     }
   };
 
-  const supprimerAdminMembre = async (name, email, password) => {
-    let adminId = null;
-    for (let i = 0; i < admin_membre.length; i++) {
-      if (
-        admin_membre[i].name === name &&
-        admin_membre[i].email === email &&
-        admin_membre[i].password === password
-      ) {
-        adminId = admin_membre[i].id;
-        break;
-      }
-      console.log('adminId');
-    }
-
-
-    
-
-    if (!adminId) return alert("Administrateur introuvable !");
-
+  // Supprimer un admin validé (admin_membre) par id
+  const supprimerAdminMembre = async (id) => {
+    if (!id) return alert("Administrateur introuvable !");
     try {
       const response = await fetch(
-        `http://localhost:5050/api/admin_membre/${adminId}`,
+        `http://localhost:5050/api/admin_membre/${id}`,
         { method: "DELETE" }
       );
-
       if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
-
-      setadmin_membre(admin_membre.filter((a) => a.id !== adminId));
+      await fetchAdminMembre();
       alert("Administrateur supprimé avec succès !");
     } catch (error) {
       alert("Erreur lors de la suppression !");
@@ -98,16 +72,12 @@ function Gestion_des_admines() {
    // Rafraîchir les information des admines  chaque 1 seconde
      useEffect(() => {
        fetchAdmins(); // Chargement initial
-       const intervalId = setInterval(fetchAdmins, 1000);
-   
-       return () => clearInterval(intervalId);
+       // Plus de setInterval ici pour éviter le spam de requêtes
      }, []);  
        // Rafraîchir les admine_mebres chaque 1 seconde
        useEffect(() => {
         fetchAdminMembre(); // Chargement initial
-        const intervalId = setInterval(fetchAdminMembre, 1000);
-    
-        return () => clearInterval(intervalId);
+        // Plus de setInterval ici pour éviter le spam de requêtes
       }, []); 
 
   return (
@@ -155,13 +125,13 @@ function Gestion_des_admines() {
               <td className="button-des-admines">
                 <button
                   className="validate-btn"
-                  onClick={() => ajouterUtilisateur(admin.id)}
+                  onClick={() => validerAdmin(admin.id)}
                 >
-                  Ajouter
+                  Valider
                 </button>
                 <button
                   className="delete-btn"
-                  onClick={() => supprimerAdminMembre(admin.nom || admin.name, admin.email, admin.password)}
+                  onClick={() => supprimerAdminMembre(admin.id)}
                 >
                   Supprimer
                 </button>

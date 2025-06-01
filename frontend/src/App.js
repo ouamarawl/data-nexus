@@ -36,7 +36,7 @@ function App() {
           <Route path="/vitrine/:id" element={<Vitrines />} />
           <Route path="/formulaire_commandes" element={<Formulaire_commandes />} />
           <Route path="/produits_categories/:categorie" element={<Produits_categories />} />
-          <Route path="/admin_dashboard" element={<Admin_dashboard />} />
+          <Route path="/admin_dashboard" element={<ProtectedRoute><Admin_dashboard /></ProtectedRoute>} />
         </Routes>
         <Footer />
       </Router>

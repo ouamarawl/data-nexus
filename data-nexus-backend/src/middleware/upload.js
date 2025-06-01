@@ -11,16 +11,21 @@ const storage = multer.diskStorage({
   },
 });
 
-// Filter to allow only image files
+// Filter to allow only image files and limit file size
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith("image/")) {
+  const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"]; // Types autorisés
+  if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new Error("Only image files are allowed!"), false);
+    cb(new Error("Seuls les fichiers image JPG, PNG, GIF, WEBP sont autorisés !"), false);
   }
 };
 
-// Create the upload middleware
-const upload = multer({ storage, fileFilter });
+// Create the upload middleware with file size limit (2 Mo max)
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: 2 * 1024 * 1024 } // 2 Mo
+});
 
 module.exports = upload;

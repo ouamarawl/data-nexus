@@ -1,5 +1,6 @@
 import "./registre.css";
-import { useRef, useState, useCallback, useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext, useRef, useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,10 +13,13 @@ function Registre() {
   const [telephone, setTelephone] = useState("");
   const [adresse, setAdresse] = useState("");
   const [dateInscription, setDateInscription] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
   const containerRef = useRef(null);
   const registerBtnRef = useRef(null); // Ajout de useRef
   const loginBtnRef = useRef(null); // Ajout de useRef
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const ajouterUtilisateur = useCallback(async () => {
     console.log("Ajout d'utilisateur en cours...");
@@ -49,7 +53,7 @@ function Registre() {
       role: role.trim(),
       telephone: telephone.trim(),
       adresse: adresse.trim(),
-      date_inscription: dateInscription.trim(),
+      date_inscription: dateInscription.trim()
     };
 
     console.log("📤 Envoi des données :", userData);
@@ -83,36 +87,28 @@ function Registre() {
   ]);
 
   const verification_id = useCallback(async () => {
-    console.log("Vérification de l'utilisateur en cours...");
-    if (!email || !password) {
+    if (!loginEmail || !loginPassword) {
       toast.error("❌ Veuillez entrer votre email et mot de passe !");
       return;
     }
-
     try {
-      const response = await fetch("http://localhost:5050/api/admin_membre");
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP: ${response.status}`);
-      }
-
-      const admin_membre = await response.json();
-      const user = admin_membre.find((u) => u.email.trim() === email.trim());
-
-      if (user) {
-        if (user.password.trim() === password.trim()) {
-          toast.success("✅ Connexion réussie !");
-          setTimeout(() => navigate("/admin_dashboard"), 2000);
-        } else {
-          toast.error("⛔ Mot de passe incorrect !");
-        }
+      const response = await fetch("http://localhost:5050/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword })
+      });
+      const data = await response.json();
+      if (response.ok && data.token) {
+        login(data.token); // Stocke le token dans le contexte
+        toast.success("✅ Connexion réussie !");
+        setTimeout(() => navigate("/admin_dashboard"), 1500);
       } else {
-        toast.error("⛔ Aucun compte avec cet email !");
+        toast.error(data.message || "⛔ Identifiants invalides !");
       }
     } catch (error) {
-      console.error("Erreur de connexion :", error);
       toast.error("⚠️ Erreur lors de la connexion !");
     }
-  }, [email, password, navigate]);
+  }, [loginEmail, loginPassword, navigate, login]);
 
   const handleSubmit = useCallback(
     async (e) => {
@@ -271,8 +267,8 @@ function Registre() {
               <input
                 type="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
               />
               <i className="bx bxs-user"></i>
             </div>
@@ -280,8 +276,8 @@ function Registre() {
               <input
                 type="password"
                 placeholder="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={loginPassword}
+                onChange={(e) => setLoginPassword(e.target.value)}
               />
               <i className="bx bxs-lock-alt"></i>
             </div>

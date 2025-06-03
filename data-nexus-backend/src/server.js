@@ -19,6 +19,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/images", express.static(path.join(__dirname, "utils", "Assets")));
 
+const imagesPath = path.join(__dirname, "src", "utils", "Assets");
+console.log("📁 Images path:", imagesPath);
+app.use("/images", express.static(imagesPath));
+
+
+
 // Routes
 app.use("/api/admin_membre", adminRoutes);
 app.use("/api/auth", authRoutes);

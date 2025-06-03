@@ -1,4 +1,5 @@
 const { db } = require('../middleware/dbConnection');
+const Order = require('../models/order');
 
 // Récupérer toutes les commandes
 exports.getAllOrders = (req, res) => {
@@ -20,19 +21,15 @@ exports.getOrderById = (req, res) => {
 
 // Ajouter une commande
 exports.addOrder = (req, res) => {
-  const { client, produits, total, statut } = req.body;
-  if (!client || !produits || !total || !statut) {
+  const { nom, prenom, email, numero, produit, prix_total, date_commande, lieu } = req.body;
+  if (!nom || !prenom || !email || !numero || !produit || !prix_total || !lieu) {
     return res.status(400).json({ message: "Tous les champs sont requis." });
   }
-  const produitsJson = JSON.stringify(Array.isArray(produits) ? produits : [produits]);
-  db.query(
-    "INSERT INTO commandes (client, produits, total, statut) VALUES (?, ?, ?, ?)",
-    [client, produitsJson, total, statut],
-    (err, result) => {
-      if (err) return res.status(500).json({ message: "Erreur lors de l'ajout", error: err.message });
-      res.status(201).json({ message: "Commande ajoutée avec succès !" });
-    }
-  );
+  // On utilise le modèle Order pour insérer la commande
+  Order.create({ nom, prenom, email, numero, produit, prix_total, lieu }, (err, result) => {
+    if (err) return res.status(500).json({ message: "Erreur lors de l'ajout", error: err.message });
+    res.status(201).json({ message: "Commande ajoutée avec succès !" });
+  });
 };
 
 // Modifier une commande

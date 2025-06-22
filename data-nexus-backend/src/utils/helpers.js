@@ -1,13 +1,15 @@
 // src/utils/helpers.js
 
+const bcrypt = require('bcrypt');
+
 const validateEmail = (email) => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(String(email).toLowerCase());
 };
 
-const hashPassword = (password) => {
-  // Implement password hashing logic here
-  return password; // Placeholder, replace with actual hashing
+const hashPassword = async (password) => {
+  const saltRounds = 10;
+  return await bcrypt.hash(password, saltRounds);
 };
 
 const formatResponse = (status, message, data = null) => {

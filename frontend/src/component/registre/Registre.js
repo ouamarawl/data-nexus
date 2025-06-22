@@ -88,25 +88,18 @@ function Registre() {
       toast.error("❌ Veuillez entrer votre email et mot de passe !");
       return;
     }
-
     try {
-      const response = await fetch("http://localhost:5050/api/admin_membre");
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP: ${response.status}`);
-      }
-
-      const admin_membre = await response.json();
-      const user = admin_membre.find((u) => u.email.trim() === email.trim());
-
-      if (user) {
-        if (user.password.trim() === password.trim()) {
-          toast.success("✅ Connexion réussie !");
-          setTimeout(() => navigate("/admin_dashboard"), 2000);
-        } else {
-          toast.error("⛔ Mot de passe incorrect !");
-        }
+      const response = await fetch("http://localhost:5050/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("✅ Connexion réussie !");
+        setTimeout(() => navigate("/admin_dashboard"), 2000);
       } else {
-        toast.error("⛔ Aucun compte avec cet email !");
+        toast.error("⛔ " + (data.message || "Mot de passe ou email incorrect !"));
       }
     } catch (error) {
       console.error("Erreur de connexion :", error);

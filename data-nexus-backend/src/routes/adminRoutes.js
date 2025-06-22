@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
+const authController = require('../controllers/authController');
 const { checkDBConnection } = require('../middleware/dbConnection');
 
 // Récupérer tous les admins
@@ -17,5 +18,8 @@ router.put('/:id', checkDBConnection, adminController.updateAdmin);
 
 // Supprimer un admin
 router.delete('/:id', checkDBConnection, adminController.deleteAdmin);
+
+// Transfert d'un admin depuis info_admin (mot de passe déjà hashé)
+router.post('/transfer', checkDBConnection, authController.transferAdmin);
 
 module.exports = router;

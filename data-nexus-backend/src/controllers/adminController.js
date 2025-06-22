@@ -1,4 +1,5 @@
 const { db } = require('../middleware/dbConnection');
+const { hashPassword } = require('../utils/helpers');
 
 // Récupérer tous les admins
 exports.getAllAdmins = (req, res) => {
@@ -19,36 +20,46 @@ exports.getAdminById = (req, res) => {
 };
 
 // Ajouter un admin
-exports.addAdmin = (req, res) => {
+exports.addAdmin = async (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
     return res.status(400).json({ message: "Tous les champs sont requis." });
   }
-  db.query(
-    "INSERT INTO admin_membre (name, email, password) VALUES (?, ?, ?)",
-    [name, email, password],
-    (err, result) => {
-      if (err) return res.status(500).json({ message: "Erreur lors de l'ajout", error: err.message });
-      res.status(201).json({ message: "Admin ajouté avec succès !" });
-    }
-  );
+  try {
+    const hashedPassword = await hashPassword(password);
+    db.query(
+      "INSERT INTO admin_membre (name, email, password) VALUES (?, ?, ?)",
+      [name, email, hashedPassword],
+      (err, result) => {
+        if (err) return res.status(500).json({ message: "Erreur lors de l'ajout", error: err.message });
+        res.status(201).json({ message: "Admin ajouté avec succès !" });
+      }
+    );
+  } catch (err) {
+    res.status(500).json({ message: "Erreur lors du hashage du mot de passe", error: err.message });
+  }
 };
 
 // Modifier un admin
-exports.updateAdmin = (req, res) => {
+exports.updateAdmin = async (req, res) => {
   const { id } = req.params;
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
     return res.status(400).json({ message: "Tous les champs sont requis." });
   }
-  db.query(
-    "UPDATE admin_membre SET name = ?, email = ?, password = ? WHERE id = ?",
-    [name, email, password, id],
-    (err, result) => {
-      if (err) return res.status(500).json({ message: "Erreur lors de la modification", error: err.message });
-      res.status(200).json({ message: "Admin modifié avec succès !" });
-    }
-  );
+  try {
+    const hashedPassword = await hashPassword(password);
+    db.query(
+      "UPDATE admin_membre SET name = ?, email = ?, password = ? WHERE id = ?",
+      [name, email, hashedPassword, id],
+      (err, result) => {
+        if (err) return res.status(500).json({ message: "Erreur lors de la modification", error: err.message });
+        res.status(200).json({ message: "Admin modifié avec succès !" });
+      }
+    );
+  } catch (err) {
+    res.status(500).json({ message: "Erreur lors du hashage du mot de passe", error: err.message });
+  }
 };
 
 // Supprimer un admin

@@ -41,21 +41,38 @@ function Gestion_des_admines() {
     if (!adminSelectionne) return alert("Admin introuvable !");
 
     try {
-      const response = await fetch("http://localhost:5050/api/admin_membre", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: adminSelectionne.nom,
-          email: adminSelectionne.email,
-          password: adminSelectionne.password || "Non spécifié",
-        }),
-      });
+      let response;
+      // Si le mot de passe est déjà hashé (transfert depuis info_admin)
+      if (adminSelectionne.password && adminSelectionne.password.startsWith('$2')) { // bcrypt hash
+        response = await fetch("http://localhost:5050/api/admin_membre/transfer", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: adminSelectionne.nom,
+            email: adminSelectionne.email,
+            hashedPassword: adminSelectionne.password
+          }),
+        });
+      } else {
+        // Ajout normal (mot de passe en clair)
+        response = await fetch("http://localhost:5050/api/admin_membre", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: adminSelectionne.nom,
+            email: adminSelectionne.email,
+            password: adminSelectionne.password
+          }),
+        });
+      }
 
-      if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
-
-      const data = await response.json();
-      setadmin_membre([...admin_membre, { ...adminSelectionne, id: data.id }]);
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert("Erreur HTTP: " + response.status + " - " + (errorData.sqlMessage || errorData.message));
+        return;
+      }
       alert("Utilisateur ajouté avec succès !");
+      // ... reste du code
     } catch (error) {
       alert("Erreur d'ajout :" + error.message);
     }
@@ -66,8 +83,7 @@ function Gestion_des_admines() {
     for (let i = 0; i < admin_membre.length; i++) {
       if (
         admin_membre[i].name === name &&
-        admin_membre[i].email === email &&
-        admin_membre[i].password === password
+        admin_membre[i].email === email 
       ) {
         adminId = admin_membre[i].id;
         break;

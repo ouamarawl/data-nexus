@@ -1,4 +1,5 @@
 const { db } = require("../middleware/dbConnection");
+const { hashPassword } = require('../utils/helpers');
 
 // Obtenir toutes les infos admin
 exports.getAllInfoAdmin = (req, res) => {
@@ -22,23 +23,38 @@ exports.getInfoAdminById = (req, res) => {
 };
 
 // Ajouter une info admin
-exports.createInfoAdmin = (req, res) => {
+exports.createInfoAdmin = async (req, res) => {
   const data = req.body;
-  db.query("INSERT INTO info_admin SET ?", data, (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.status(201).json({ id: result.insertId, ...data });
-  });
+  if (!data.password) {
+    return res.status(400).json({ error: "Le mot de passe est requis." });
+  }
+  try {
+    data.password = await hashPassword(data.password);
+    db.query("INSERT INTO info_admin SET ?", data, (err, result) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.status(201).json({ id: result.insertId, ...data });
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Erreur lors du hashage du mot de passe" });
+  }
 };
 
 // Modifier une info admin
-exports.updateInfoAdmin = (req, res) => {
+exports.updateInfoAdmin = async (req, res) => {
   const { id } = req.params;
   const data = req.body;
-  db.query("UPDATE info_admin SET ? WHERE id = ?", [data, id], (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-    if (result.affectedRows === 0) return res.status(404).json({ error: "Info admin non trouvée" });
-    res.json({ id, ...data });
-  });
+  try {
+    if (data.password) {
+      data.password = await hashPassword(data.password);
+    }
+    db.query("UPDATE info_admin SET ? WHERE id = ?", [data, id], (err, result) => {
+      if (err) return res.status(500).json({ error: err.message });
+      if (result.affectedRows === 0) return res.status(404).json({ error: "Info admin non trouvée" });
+      res.json({ id, ...data });
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Erreur lors du hashage du mot de passe" });
+  }
 };
 
 // Supprimer une info admin

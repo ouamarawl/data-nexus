@@ -4,6 +4,7 @@ import "./Gestion_des_admines.css";
 function Gestion_des_admines() {
   const [admins, setAdmins] = useState([]);
   const [admin_membre, setadmin_membre] = useState([]);
+  const [adminSelectionne, setAdminSelectionne] = useState(null); // ✅ Ajouté
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
@@ -36,14 +37,12 @@ function Gestion_des_admines() {
       .finally(() => setLoading(false));
   }, []);
 
-  const ajouterUtilisateur = async (id) => {
-    const adminSelectionne = admins.find((admin) => admin.id === id);
-    if (!adminSelectionne) return alert("Admin introuvable !");
-
+  // Valider un admin (copie info_admin -> admin_membre)
+  const validerAdmin = async (id) => {
+    setError(null);
     try {
       let response;
-      // Si le mot de passe est déjà hashé (transfert depuis info_admin)
-      if (adminSelectionne.password && adminSelectionne.password.startsWith('$2')) { // bcrypt hash
+      if (adminSelectionne?.password?.startsWith('$2')) {
         response = await fetch("http://localhost:5050/api/admin_membre/transfer", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -54,7 +53,6 @@ function Gestion_des_admines() {
           }),
         });
       } else {
-        // Ajout normal (mot de passe en clair)
         response = await fetch("http://localhost:5050/api/admin_membre", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -72,9 +70,9 @@ function Gestion_des_admines() {
         return;
       }
       alert("Utilisateur ajouté avec succès !");
-      // ... reste du code
+      fetchAdminMembre();
     } catch (error) {
-      alert("Erreur d'ajout :" + error.message);
+      alert("Erreur de validation :" + error.message);
     }
   };
 
@@ -83,48 +81,35 @@ function Gestion_des_admines() {
     for (let i = 0; i < admin_membre.length; i++) {
       if (
         admin_membre[i].name === name &&
-        admin_membre[i].email === email 
+        admin_membre[i].email === email
       ) {
         adminId = admin_membre[i].id;
         break;
       }
-      console.log('adminId');
     }
-
-
-    
 
     if (!adminId) return alert("Administrateur introuvable !");
 
     try {
       const response = await fetch(
-        `http://localhost:5050/api/admin_membre/${adminId}`,
+        `http://localhost:5050/api/admin_membre/${adminId}`, // ✅ Corrigé ici
         { method: "DELETE" }
       );
-
       if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
-
-      setadmin_membre(admin_membre.filter((a) => a.id !== adminId));
+      await fetchAdminMembre();
       alert("Administrateur supprimé avec succès !");
     } catch (error) {
       alert("Erreur lors de la suppression !");
     }
   };
  
-   // Rafraîchir les information des admines  chaque 1 seconde
-     useEffect(() => {
-       fetchAdmins(); // Chargement initial
-       const intervalId = setInterval(fetchAdmins, 1000);
-   
-       return () => clearInterval(intervalId);
-     }, []);  
-       // Rafraîchir les admine_mebres chaque 1 seconde
-       useEffect(() => {
-        fetchAdminMembre(); // Chargement initial
-        const intervalId = setInterval(fetchAdminMembre, 1000);
-    
-        return () => clearInterval(intervalId);
-      }, []); 
+  useEffect(() => {
+    fetchAdmins();
+  }, []);  
+
+  useEffect(() => {
+    fetchAdminMembre();
+  }, []); 
 
   return (
     <div className="table-container">
@@ -171,13 +156,22 @@ function Gestion_des_admines() {
               <td className="button-des-admines">
                 <button
                   className="validate-btn"
-                  onClick={() => ajouterUtilisateur(admin.id)}
+                  onClick={() => {
+                    setAdminSelectionne(admin); // ✅ Mis à jour ici
+                    validerAdmin(admin.id);
+                  }}
                 >
-                  Ajouter
+                  Valider
                 </button>
                 <button
                   className="delete-btn"
-                  onClick={() => supprimerAdminMembre(admin.nom || admin.name, admin.email, admin.password)}
+                  onClick={() =>
+                    supprimerAdminMembre(
+                      admin.name || admin.nom,
+                      admin.email,
+                      admin.password
+                    )
+                  }
                 >
                   Supprimer
                 </button>

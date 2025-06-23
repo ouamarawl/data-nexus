@@ -18,7 +18,7 @@ function Admin_dashboard() {
 
   return (
     <div className="admin-dashboard">
-      <h1 id="admin-dashboard-titre" >Admin dashboard</h1>
+      <h1 id="admin-dashboard-titre">Admin dashboard</h1>
       <div className="section-dashboard">
         <div className="container_1">
           <Gestion_des_produits />

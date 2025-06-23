@@ -3,13 +3,19 @@ import { createContext, useState, useEffect } from "react";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [admin, setAdmin] = useState(null);
-
-  useEffect(() => {
+  const [admin, setAdmin] = useState(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      setAdmin({ token });
-    }
+    return token ? { token } : null;
+  });
+
+  // Synchronisation du contexte avec le localStorage (pour multi-onglets et refresh)
+  useEffect(() => {
+    const syncAuth = () => {
+      const token = localStorage.getItem("token");
+      setAdmin(token ? { token } : null);
+    };
+    window.addEventListener("storage", syncAuth);
+    return () => window.removeEventListener("storage", syncAuth);
   }, []);
 
   const login = (token) => {

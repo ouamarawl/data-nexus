@@ -1,5 +1,6 @@
 import "./registre.css";
-import { useRef, useState, useCallback, useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext, useRef, useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,10 +13,13 @@ function Registre() {
   const [telephone, setTelephone] = useState("");
   const [adresse, setAdresse] = useState("");
   const [dateInscription, setDateInscription] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
   const containerRef = useRef(null);
   const registerBtnRef = useRef(null); // Ajout de useRef
   const loginBtnRef = useRef(null); // Ajout de useRef
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const ajouterUtilisateur = useCallback(async () => {
     console.log("Ajout d'utilisateur en cours...");
@@ -49,7 +53,7 @@ function Registre() {
       role: role.trim(),
       telephone: telephone.trim(),
       adresse: adresse.trim(),
-      date_inscription: dateInscription.trim(),
+      date_inscription: dateInscription.trim()
     };
 
     console.log("📤 Envoi des données :", userData);
@@ -66,7 +70,27 @@ function Registre() {
         throw new Error(`Erreur HTTP: ${response.status} - ${errorData.error}`);
       }
 
-      toast.success("✅ Inscription réussie !");
+      // Tentative de connexion automatique après inscription
+      // Supposons que l'API d'inscription ne retourne pas de token, donc on tente un login
+      try {
+        const loginResponse = await fetch("http://localhost:5050/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email.trim(), password: password.trim() }),
+        });
+        const loginData = await loginResponse.json();
+        // Ajout du log pour diagnostic
+        console.log("Réponse API /api/auth/login après inscription :", loginData);
+        if (loginResponse.ok && loginData.token) {
+          login(loginData.token);
+          toast.success("✅ Inscription et connexion réussies !");
+          setTimeout(() => navigate("/admin_dashboard"), 2000);
+        } else {
+          toast.success("✅ Inscription réussie ! Veuillez vous connecter.");
+        }
+      } catch (loginError) {
+        toast.success("✅ Inscription réussie ! Veuillez vous connecter.");
+      }
     } catch (error) {
       console.error("🚨 Erreur d'ajout :", error.message);
       toast.error("⚠️ Erreur lors de l'inscription !");
@@ -83,8 +107,7 @@ function Registre() {
   ]);
 
   const verification_id = useCallback(async () => {
-    console.log("Vérification de l'utilisateur en cours...");
-    if (!email || !password) {
+    if (!loginEmail || !loginPassword) {
       toast.error("❌ Veuillez entrer votre email et mot de passe !");
       return;
     }
@@ -92,20 +115,21 @@ function Registre() {
       const response = await fetch("http://localhost:5050/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
       });
+
       const data = await response.json();
-      if (response.ok) {
-        toast.success("✅ Connexion réussie !");
-        setTimeout(() => navigate("/admin_dashboard"), 2000);
-      } else {
+     if (response.ok) {
+  login(data); // ✅ met à jour le contexte admin
+  toast.success("✅ Connexion réussie !");
+  setTimeout(() => navigate("/admin_dashboard"), 2000);
+} else {
         toast.error("⛔ " + (data.message || "Mot de passe ou email incorrect !"));
       }
     } catch (error) {
-      console.error("Erreur de connexion :", error);
       toast.error("⚠️ Erreur lors de la connexion !");
     }
-  }, [email, password, navigate]);
+  }, [loginEmail, loginPassword, navigate, login]);
 
   const handleSubmit = useCallback(
     async (e) => {
@@ -264,8 +288,8 @@ function Registre() {
               <input
                 type="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
               />
               <i className="bx bxs-user"></i>
             </div>
@@ -273,8 +297,8 @@ function Registre() {
               <input
                 type="password"
                 placeholder="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={loginPassword}
+                onChange={(e) => setLoginPassword(e.target.value)}
               />
               <i className="bx bxs-lock-alt"></i>
             </div>

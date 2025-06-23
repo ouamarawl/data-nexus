@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Home from "./pages/home/Home";
@@ -25,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <ScrollToTop /> 
+        <ScrollToTop />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -34,10 +39,26 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/resulta_searshing" element={<Resulta_searshing />} />
           <Route path="/vitrine/:id" element={<Vitrines />} />
-          <Route path="/formulaire_commandes" element={<Formulaire_commandes />} />
-          <Route path="/produits_categories/:categorie" element={<Produits_categories />} />
-          <Route path="/admin_dashboard" element={<Admin_dashboard />} />
+          <Route
+            path="/formulaire_commandes"
+            element={<Formulaire_commandes />}
+          />
+          <Route
+            path="/produits_categories/:categorie"
+            element={<Produits_categories />}
+          />
+
+          {/* ✅ Protection réactivée ici */}
+          <Route
+            path="/admin_dashboard"
+            element={
+              <ProtectedRoute>
+                <Admin_dashboard />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
+
         <Footer />
       </Router>
     </div>

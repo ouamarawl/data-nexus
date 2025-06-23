@@ -9,6 +9,9 @@ const orderRoutes = require("./routes/orderRoutes");
 const productRoutes = require("./routes/productRoutes");
 const infoAdminRoutes = require("./routes/infoAdminRoutes");
 const upload = require("./middleware/upload");
+require("dotenv").config();
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 
 const app = express();
 const PORT = process.env.PORT || 5050;
@@ -19,11 +22,23 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/images", express.static(path.join(__dirname, "utils", "Assets")));
 
-const imagesPath = path.join(__dirname, "src", "utils", "Assets");
-console.log("📁 Images path:", imagesPath);
-app.use("/images", express.static(imagesPath));
+// Security middleware
+app.use(helmet());
 
+// Request rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 1000, // Limite augmentée pour le développement
+  message: "Trop de requêtes, réessayez plus tard."
+});
+app.use(limiter);
 
+// Secure CORS
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*',
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 // Routes
 app.use("/api/admin_membre", adminRoutes);

@@ -53,7 +53,7 @@ function Registre() {
       role: role.trim(),
       telephone: telephone.trim(),
       adresse: adresse.trim(),
-      date_inscription: dateInscription.trim()
+      date_inscription: dateInscription.trim(),
     };
 
     console.log("📤 Envoi des données :", userData);
@@ -73,14 +73,23 @@ function Registre() {
       // Tentative de connexion automatique après inscription
       // Supposons que l'API d'inscription ne retourne pas de token, donc on tente un login
       try {
-        const loginResponse = await fetch("http://localhost:5050/api/auth/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email.trim(), password: password.trim() }),
-        });
+        const loginResponse = await fetch(
+          "http://localhost:5050/api/auth/login",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: email.trim(),
+              password: password.trim(),
+            }),
+          }
+        );
         const loginData = await loginResponse.json();
         // Ajout du log pour diagnostic
-        console.log("Réponse API /api/auth/login après inscription :", loginData);
+        console.log(
+          "Réponse API /api/auth/login après inscription :",
+          loginData
+        );
         if (loginResponse.ok && loginData.token) {
           login(loginData.token);
           toast.success("✅ Inscription et connexion réussies !");
@@ -95,7 +104,7 @@ function Registre() {
       console.error("🚨 Erreur d'ajout :", error.message);
       toast.error("⚠️ Erreur lors de l'inscription !");
     }
-    }, [
+  }, [
     nom,
     email,
     password,
@@ -119,12 +128,14 @@ function Registre() {
       });
 
       const data = await response.json();
-     if (response.ok) {
-  login(data); // ✅ met à jour le contexte admin
-  toast.success("✅ Connexion réussie !");
-  setTimeout(() => navigate("/admin_dashboard"), 2000);
-} else {
-        toast.error("⛔ " + (data.message || "Mot de passe ou email incorrect !"));
+      if (response.ok) {
+        login(data); // ✅ met à jour le contexte admin
+        toast.success("✅ Connexion réussie !");
+        setTimeout(() => navigate("/admin_dashboard"), 2000);
+      } else {
+        toast.error(
+          "⛔ " + (data.message || "Mot de passe ou email incorrect !")
+        );
       }
     } catch (error) {
       toast.error("⚠️ Erreur lors de la connexion !");
@@ -267,7 +278,7 @@ function Registre() {
               <a style={{textDecoration:'none'}} href="#">Mot de passe oublié ?</a>
             </div> */}
             <button type="submit" id="sign-up-btn" className="btn">
-            <p>Sign-Up</p>
+              <p>Sign-Up</p>
             </button>
             {/* <p>ou connectez-vous avec les plateformes sociales</p>
             <div className="social-icons">
@@ -303,8 +314,13 @@ function Registre() {
               <i className="bx bxs-lock-alt"></i>
             </div>
             {/* <a style={{textDecoration:'none'}} href="#">Mot de passe oublié ?</a> */}
-            <button type="button" id="sign-in-btn" className="btn" onClick={verification_id}>
-                <p>Sign-In</p>
+            <button
+              type="button"
+              id="sign-in-btn"
+              className="btn"
+              onClick={verification_id}
+            >
+              <p>Sign-In</p>
             </button>
             <p>or register with social platforms</p>
             {/* <div className="social-icons">

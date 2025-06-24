@@ -28,7 +28,7 @@ app.use(helmet());
 // Request rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 1000, // Limite augmentée pour le développement
+  max: 5000, // Limite augmentée à 5000 requêtes par 15 minutes
   message: "Trop de requêtes, réessayez plus tard."
 });
 app.use(limiter);

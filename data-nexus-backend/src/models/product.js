@@ -1,5 +1,5 @@
 // src/models/product.js
-const db = require('../config/db');
+const { db } = require('../middleware/dbConnection');
 
 class Product {
   constructor(titre, description, prix, images, categorie) {

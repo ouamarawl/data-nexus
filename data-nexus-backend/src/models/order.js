@@ -1,5 +1,5 @@
 // src/models/order.js
-const db = require('../config/db');
+const { db } = require('../middleware/dbConnection');
 
 class Order {
   constructor(nom, prenom, email, numero, produit, prix_total, lieu) {

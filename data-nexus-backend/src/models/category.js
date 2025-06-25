@@ -1,5 +1,5 @@
 // src/models/category.js
-const db = require('../config/db');
+const { db } = require('../middleware/dbConnection');
 
 class Category {
   constructor(titre, image) {

@@ -1,5 +1,5 @@
 // src/models/admin.js
-const db = require('../config/db');
+const { db } = require('../middleware/dbConnection');
 
 class Admin {
   constructor(nom, email, password, role, telephone, adresse, date_inscription) {

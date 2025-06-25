@@ -37,8 +37,15 @@ app.use(cors({
   credentials: true
 }));
 
+// CORS pour les images statiques
+app.use("/images", cors({
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true
+}));
+
 // Statics pour les images
 app.use("/images", express.static(path.join(__dirname, "src", "utils", "Assets")));
+
 
 // Routes API
 app.use("/api/admin_membre", adminRoutes);

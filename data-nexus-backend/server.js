@@ -22,13 +22,17 @@ const PORT = process.env.PORT || 5050;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 // Sécurité + Limitation
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
 app.use(rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5000,
   message: "Trop de requêtes, réessayez plus tard."
 }));
+
 
 // CORS avec frontend autorisé
 app.use(cors({
@@ -37,7 +41,6 @@ app.use(cors({
   credentials: true
 }));
 
-// CORS pour les images statiques
 app.use("/images", cors({
   origin: process.env.FRONTEND_URL || '*',
   credentials: true
